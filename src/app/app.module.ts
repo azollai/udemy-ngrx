@@ -1,15 +1,17 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from './shared/shared.module';
-import {ShoppingListModule} from './shopping-list/shopping-list.module';
-import {AuthModule} from './auth/auth.module'
-import {CoreModule} from './core/core.module';
-import {StoreModule} from '@ngrx/store';
-import {shoppingListReducer} from './shopping-list/ngrx/shopping-list.reducers';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './ngrx/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/ngrx/auth.effects';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {shoppingListReducer} from './shopping-list/ngrx/shopping-list.reducers';
     ShoppingListModule,
     AuthModule,
     CoreModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer})
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects])
   ],
   bootstrap: [AppComponent]
 })
