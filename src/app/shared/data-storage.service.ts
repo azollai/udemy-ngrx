@@ -19,31 +19,11 @@ export class DataStorageService {
     //   params: new HttpParams().set('auth', token)
     //   // headers: headers
     // });
-    const req = new HttpRequest('PUT', 'https://udemy-ngrx.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {reportProgress: true});
-    return this.httpClient.request(req);
+
   }
 
   getRecipes() {
     // this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json?auth=' + token)
-    this.httpClient.get<Recipe[]>('https://udemy-ngrx.firebaseio.com/recipes.json', {
-      observe: 'body',
-      responseType: 'json'
-    })
-      .map(
-        (recipes) => {
-          console.log(recipes);
-          for (let recipe of recipes) {
-            if (!recipe['ingredients']) {
-              recipe['ingredients'] = [];
-            }
-          }
-          return recipes;
-        }
-      )
-      .subscribe(
-        (recipes: Recipe[]) => {
-          this.recipeService.setRecipes(recipes);
-        }
-      );
+
   }
 }

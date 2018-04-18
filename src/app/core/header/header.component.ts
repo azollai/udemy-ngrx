@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as fromAuth from '../../auth/ngrx/auth.reducers';
 import * as AuthActions from '../../auth/ngrx/auth.actions';
+import * as RecipeActions from '../../recipes/ngrx/recipe.actions';
 
 // import { HttpEvent, HttpEventType } from '@angular/common/http';
 
@@ -24,16 +25,11 @@ export class HeaderComponent implements OnInit {
   }
 
   onSaveData() {
-    this.dataStorageService.storeRecipes()
-      .subscribe(
-        (response) => {
-          console.log(response);
-        }
-      );
+    this.store.dispatch(new RecipeActions.StoreRecipes());
   }
 
   onFetchData() {
-    this.dataStorageService.getRecipes();
+    this.store.dispatch(new RecipeActions.FetchRecipes());
   }
 
   onLogout() {
