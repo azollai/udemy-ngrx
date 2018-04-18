@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { RecipeService } from '../recipe.service';
 import * as RecipeActions from '../ngrx/recipe.actions';
 import * as fromRecipe from '../ngrx/recipe.reducers';
 import { Store } from '@ngrx/store';
@@ -18,7 +17,6 @@ export class RecipeEditComponent implements OnInit {
   recipeForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private recipeService: RecipeService,
               private router: Router,
               private store: Store<fromRecipe.FeatureState>) {
   }
@@ -35,11 +33,6 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
-    // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'],
-    //   this.recipeForm.value['description'],
-    //   this.recipeForm.value['imagePath'],
-    //   this.recipeForm.value['ingredients']);
     if (this.editMode) {
       this.store.dispatch(new RecipeActions.UpdateRecipe(
         {

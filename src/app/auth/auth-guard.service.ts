@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import * as fromApp from '../ngrx/app.reducers';
 import * as fromAuth from './ngrx/auth.reducers';
 import { Store } from '@ngrx/store';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

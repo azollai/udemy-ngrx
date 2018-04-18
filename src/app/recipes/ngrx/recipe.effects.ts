@@ -8,6 +8,7 @@ import * as RecipeActions from './recipe.actions';
 import { Recipe } from '../recipe.model';
 import * as fromRecipe from './recipe.reducers';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RecipeEffects {
